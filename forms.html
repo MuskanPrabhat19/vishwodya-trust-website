@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishwodya Trust - Forms & Updates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --card-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --accent-color: #00ffcc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #111;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .header nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-section h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-color);
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+
+        .forms-container {
+            width: 100%;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: var(--card-dark);
+            margin: 1.5rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.1);
+        }
+
+        .card h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            margin: 0.5rem 0 1.5rem;
+            color: #ccc;
+        }
+
+        .card a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color: #00e6b8;
+        }
+
+        /* Updates Section Styling */
+        .updates-container {
+            margin: 4rem auto;
+            text-align: left;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .updates-container h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            font-size: 2rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .updates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .update-card {
+            background-color: var(--card-dark);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .update-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.2);
+        }
+
+        .update-card h3 {
+            margin: 0;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+        }
+
+        .update-card p {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #ccc;
+            white-space: pre-line;
+        }
+
+        .update-card p a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .update-card .date {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #111;
+            font-size: 0.9rem;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            footer .footer-content {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="index.html" class="logo">Vishwodya Trust</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="forms.html">Forms</a>
+            <a href="links.html">Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+    <div class="main-content">
+        <div class="header-section">
+            <h1>📋 Our Offerings</h1>
+            <p>Choose a form to get started with our services.</p>
+        </div>
+        <div class="forms-container">
+            <div class="card">
+                <h3>🎧 M&P Audio Series</h3>
+                <p>Emotionally loaded audio drops for youth.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEhcAGpqZY9ugDRQDRBRjHnSZ0IO2C9eR1B2FokKJQQifD-Q/viewform?usp=dialog" target="_blank">Open Form</a>
+            </div>
+            <div class="card">
+                <h3>🛠️ Vishwodya E-Seva</h3>
+                <p>Zero-budget digital help for PAN, Aadhaar, and more.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSccUJwXAiwEsTGpNH8kE_7ck1k0ljROvmVbXd2OkyEbSxCYYA/viewform?usp=dialog" target="_blank">Open Form</a>
+            </div>
+            <div class="card">
+                <h3>🌱 Join Vishwodya Trust</h3>
+                <p>Volunteer and build a digitally empowered Bharat.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0TUAdNBKoKhiDUyWGP1_fyG84UzgfT8ZpvgHM0HgcFrRw7g/viewform?usp=dialog" target="_blank">Open Form</a>
+            </div>
+        </div>
+        <div class="updates-container">
+            <h2>Latest Updates</h2>
+            <div class="updates-list" id="updates-list">
+                <p>Loading updates...</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: contact.vishwodyatrust@gmail.com</p>
+                <p>Phone: +91 9262269107</p>
+                <p>Address: India, Bihar, Sitamarhi</p>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a> | <a href="forms.html">Forms</a> | <a href="links.html">Links</a> | <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 Vishwodya Trust. All Rights Reserved.</p>
+    </footer>
+    <script>
+        // Replace with your Google Apps Script URL
+        const googleAppsScriptURL = 'https://script.google.com/macros/s/AKfycbxXCmv3bkaGQnMtIczaEhM4oFk8rxv5gg5OJQHW17ZLIxFikEgc1jbyNPpp73Jp5L8/exec';
+
+        async function fetchUpdates() {
+            const updatesList = document.getElementById('updates-list');
+            updatesList.innerHTML = '<p>Loading updates...</p>';
+
+            try {
+                const response = await fetch(googleAppsScriptURL);
+                const updates = await response.json();
+
+                if (updates.length > 0) {
+                    updatesList.innerHTML = '';
+                    updates.reverse().forEach(update => {
+                        const updateCard = document.createElement('div');
+                        updateCard.classList.add('update-card');
+                        updateCard.innerHTML = `
+                            <span class="date">${update.date}</span>
+                            <h3>${update.title}</h3>
+                            <p>${update.content}</p>
+                        `;
+                        updatesList.appendChild(updateCard);
+                    });
+                } else {
+                    updatesList.innerHTML = '<p>No updates available at the moment.</p>';
+                }
+            } catch (error) {
+                updatesList.innerHTML = '<p>Error loading updates. Please try again later.</p>';
+                console.error('Error fetching updates:', error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchUpdates);
+    </script>
+</body>
+</html>

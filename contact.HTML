@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishwodya Trust - Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --card-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --accent-color: #00ffcc;
+            --animation-duration: 0.6s;
+        }
+
+        /* Basic Setup and Scrollbar Fix */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background-color: #111;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .header nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Mobile Menu (Hamburger) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: var(--accent-color);
+            margin: 4px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Main content styling */
+        .main-content {
+            flex: 1;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Interactive Enquiry Form Section */
+        .enquiry-form-container {
+            max-width: 650px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .enquiry-form-container h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .enquiry-form-container .description {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .enquiry-form {
+            background-color: var(--card-dark);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .enquiry-form:hover {
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
+        }
+
+        .enquiry-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        .enquiry-form input,
+        .enquiry-form select,
+        .enquiry-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #333;
+            background-color: #222;
+            color: var(--text-light);
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .enquiry-form input:focus,
+        .enquiry-form select:focus,
+        .enquiry-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .enquiry-form input::placeholder,
+        .enquiry-form textarea::placeholder {
+            color: #999;
+        }
+
+        .enquiry-form select option {
+            background-color: #222;
+            color: var(--text-light);
+        }
+        
+        /* Radio button styling */
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            padding-left: 25px;
+            font-weight: normal;
+        }
+        .radio-group input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .radio-group .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #555;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+        .radio-group input[type="radio"]:checked ~ .checkmark {
+            background-color: var(--accent-color);
+        }
+        .radio-group .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .radio-group input[type="radio"]:checked ~ .checkmark:after {
+            display: block;
+            top: 6px;
+            left: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+        }
+
+        .enquiry-form button {
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .enquiry-form button:hover {
+            transform: translateY(-5px);
+            background-color: #00e6b8;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+        }
+
+        .ack-message {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            background-color: #2a2a2a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-color);
+            display: none;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        .ack-message.show {
+            display: block;
+        }
+        
+        .ack-id {
+            color: var(--accent-color);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #111;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        footer .footer-content .contact-info p {
+            margin: 0.2rem 0;
+        }
+
+        @media (min-width: 768px) {
+            footer .footer-content {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
+
+        /* Modal Styles for Pop-up */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 2000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-dark);
+            margin: auto;
+            padding: 3rem;
+            border: 1px solid var(--accent-color);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 20px var(--accent-color);
+            animation: popIn 0.5s ease-out;
+        }
+
+        .modal-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #ccc;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-color);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="index.html" class="logo">Vishwodya Trust</a>
+        <div class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="forms.html">Forms</a>
+            <a href="links.html">Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="enquiry-form-container">
+            <h1>🔹 Vishwodya Trust — Enquiry & Support Form</h1>
+            <p class="description">Namaste! This form is for those seeking help, support, or collaboration with Vishwodya Trust. Whether it's PAN, Aadhaar, certificates, cybersecurity, or volunteering — we’re here for you.</p>
+            <section class="enquiry-form">
+                <form id="vishwodyaForm">
+                    <div class="form-group">
+                        <label for="enqName">Full Name</label>
+                        <input type="text" id="enqName" name="enqName" placeholder="Your Full Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="enqMobile">Mobile Number</label>
+                        <input type="tel" id="enqMobile" name="enqMobile" placeholder="Mobile Number" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="enqEmail">Email Address (optional)</label>
+                        <input type="email" id="enqEmail" name="enqEmail" placeholder="Email Address (optional)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="enqLocation">District / Location</label>
+                        <input type="text" id="enqLocation" name="enqLocation" placeholder="Your District / City" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="enqService">Service Required</label>
+                        <select id="enqService" name="enqService" required>
+                            <option value="">Select Service</option>
+                            <option value="PAN Card Assistance">PAN Card Assistance</option>
+                            <option value="Aadhaar Update">Aadhaar Update</option>
+                            <option value="Caste/Income Certificate">Caste/Income Certificate</option>
+                            <option value="Cybersecurity Help">Cybersecurity Help</option>
+                            <option value="Join Vishwodya">Join Vishwodya</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="enqMessage">Additional Details (optional)</label>
+                        <textarea id="enqMessage" name="enqMessage" placeholder="Please provide any additional details" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="source" value="Telegram"><span class="checkmark"></span>Telegram</label>
+                            <label><input type="radio" name="source" value="Instagram"><span class="checkmark"></span>Instagram</label>
+                            <label><input type="radio" name="source" value="Friend"><span class="checkmark"></span>Friend</label>
+                            <label><input type="radio" name="source" value="Other"><span class="checkmark"></span>Other</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Would you like to receive updates on WhatsApp?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="updates" value="Yes" checked><span class="checkmark"></span>Yes</label>
+                            <label><input type="radio" name="updates" value="No"><span class="checkmark"></span>No</label>
+                        </div>
+                    </div>
+                    <button type="submit" id="submitBtn">Submit Enquiry</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: contact.vishwodyatrust@gmail.com</p>
+                <p>Phone: +91 9262269107</p>
+                <p>Address: India, Bihar, Sitamarhi</p>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a> | <a href="forms.html">Forms</a> | <a href="links.html">Links</a> | <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 Vishwodya Trust. All Rights Reserved.</p>
+    </footer>
+
+    <div id="completionModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">Submission Successful!</h3>
+            <p id="modalMessage">Thank you for your enquiry. We will get back to you shortly.</p>
+            <p id="modalAckId" class="ack-id"></p>
+        </div>
+    </div>
+
+    <script>
+        // Replace with your Google Apps Script URL
+        const googleAppsScriptURL = 'https://script.google.com/macros/s/AKfycbwsHt9E0jRX6vvqpB3DYiejUiC_ZlY0Rg9PgLXfIk0e9cC0Iw_1mpB-Q6XfKK6wOFvx/exec';
+
+        // Mobile menu toggle functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('nav');
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            const form = document.getElementById('vishwodyaForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const modal = document.getElementById('completionModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalAckId = document.getElementById('modalAckId');
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Stop the form from submitting normally
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                // Get all form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                // Generate ACK ID on the client side with the new format
+                const currentYear = new Date().getFullYear();
+                const randomNum = Math.floor(1000 + Math.random() * 9000); // 4-digit random number
+                const ackId = `VSY${currentYear}${randomNum}`;
+
+                // Add ACK ID to the data to be sent
+                data.ackId = ackId;
+                
+                try {
+                    const response = await fetch(googleAppsScriptURL, {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8',
+                        },
+                    });
+
+                    if (response.ok) {
+                        modalTitle.textContent = 'Submission Successful!';
+                        modalMessage.textContent = 'Thank you for your enquiry. We will get back to you shortly.';
+                        modalAckId.textContent = 'Your Enquiry ID is: ' + ackId;
+                        modal.style.display = 'flex'; // Show the modal
+                        form.reset(); // Clear the form fields
+                    } else {
+                        throw new Error('Form submission failed.');
+                    }
+                } catch (error) {
+                    modalTitle.textContent = 'Submission Failed';
+                    modalMessage.textContent = 'An error occurred. Please try again or contact us directly.';
+                    modalAckId.textContent = ''; // Clear ACK ID on failure
+                    modal.style.display = 'flex'; // Show the modal
+                    console.error('Error:', error);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Enquiry';
+                }
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('completionModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
